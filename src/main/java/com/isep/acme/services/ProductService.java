@@ -18,9 +18,4 @@ public interface ProductService {
 
     ProductDetailDTO getDetails(final String sku);
 
-    ProductDTO create(final Product manager);
-
-    ProductDTO updateBySku(final String sku, final Product product);
-
-    void deleteBySku(final String sku);
 }
