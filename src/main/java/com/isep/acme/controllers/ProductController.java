@@ -10,12 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.isep.acme.model.Product;
-import com.isep.acme.model.ProductDTO;
+import com.isep.acme.model.dtos.ProductDTO;
 
 import com.isep.acme.services.ProductService;
-
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
