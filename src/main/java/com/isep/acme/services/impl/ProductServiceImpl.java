@@ -6,6 +6,7 @@ import com.isep.acme.model.dtos.ProductDetailDTO;
 import com.isep.acme.repositories.ProductRepository;
 
 import com.isep.acme.services.ProductService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository repository;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     public Optional<Product> getProductBySku( final String sku ) {
