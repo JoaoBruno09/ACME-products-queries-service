@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RMQListener {
 
-    @RabbitListener(queues = RMQConfig.QUEUE)
+    @RabbitListener(queues = RMQConfig.PQQUEUE)
     public void listener(Product product){
         System.out.println("Product" + product);
         System.out.println("Product SKU" + product.getSku());

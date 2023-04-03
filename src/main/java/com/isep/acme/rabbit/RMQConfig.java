@@ -10,18 +10,17 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RMQConfig {
-
-	public static final String QUEUE = "message_queue";
-	public static final String EXCHANGE = "message_exchange";
-
-	@Bean
-	public Queue queue() {
-		return new Queue(QUEUE);
-	}
+	public static final String PQQUEUE = "products_queries_queue";
+	public static final String EXCHANGE = "fanout_exchange";
 
 	@Bean
 	public FanoutExchange fanout() {
 		return new FanoutExchange(EXCHANGE);
+	}
+
+	@Bean
+	public Queue queue() {
+		return new Queue(PQQUEUE);
 	}
 
 	@Bean
