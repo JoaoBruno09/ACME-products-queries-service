@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  products_Q:
+  products_q:
     build: .
     ports:
       - "9001:8080"
