@@ -1,5 +1,6 @@
 package com.isep.acme.rabbit;
 
+import com.isep.acme.constants.Constants;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,17 +11,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RMQConfig {
-	public static final String PQQUEUE = "products_queries_queue";
-	public static final String EXCHANGE = "fanout_exchange";
+
 
 	@Bean
 	public FanoutExchange fanout() {
-		return new FanoutExchange(EXCHANGE);
+		return new FanoutExchange(Constants.EXCHANGE);
 	}
 
 	@Bean
 	public Queue queue() {
-		return new Queue(PQQUEUE);
+		return new Queue(Constants.PQQUEUE);
 	}
 
 	@Bean
