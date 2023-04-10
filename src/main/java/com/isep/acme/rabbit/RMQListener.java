@@ -20,9 +20,10 @@ public class RMQListener {
     @Autowired
     private ProductRepository repository;
 
-    @RabbitListener(queues = Constants.PQQUEUE)
+    @RabbitListener(queues = "#{queue.name}")
     public void listener(Message message){
         final String action= message.getMessageProperties().getHeader("action");
+        if (action.equals(Constants.CREATED_PRODUCT_HEADER) || action.equals(Constants.UPDATED_PRODUCT_HEADER) || action.equals(Constants.DELETED_PRODUCT_HEADER)){
         final Product product = (Product) messageConverter.fromMessage(message);
         System.out.println("Received Product Message " + product);
         final Optional<Product> productToAction = repository.findBySku(product.getSku());
@@ -51,5 +52,5 @@ public class RMQListener {
                     break;
             }
         }
-    }
+    }}
 }

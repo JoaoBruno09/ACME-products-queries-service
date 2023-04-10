@@ -11,23 +11,34 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RMQConfig {
+	@Bean
+	public Queue queue() {
+		return new AnonymousQueue();
+	}
 
-
+	public Queue queueRPC() {
+		return new AnonymousQueue();
+	}
 	@Bean
 	public FanoutExchange fanout() {
 		return new FanoutExchange(Constants.EXCHANGE);
 	}
-
 	@Bean
-	public Queue queue() {
-		return new Queue(Constants.PQQUEUE);
+	public DirectExchange directExchange() {
+		return new DirectExchange(Constants.DIRECT_EXCHANGE);
 	}
 
 	@Bean
 	public Binding binding(FanoutExchange fanout, Queue queue) {
 		return BindingBuilder.bind(queue).to(fanout);
 	}
-
+	@Bean
+	public Binding bindingDirect(DirectExchange exchange,
+								 Queue queue) {
+		return BindingBuilder.bind(queue)
+				.to(exchange)
+				.with("rpc_products_queue");
+	}
 	@Bean
 	public Jackson2JsonMessageConverter messageConverter(){
 		return new Jackson2JsonMessageConverter();
